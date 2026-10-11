@@ -12,6 +12,7 @@
     <string name="setup_error_unreachable">Не удалось связаться с сервером: %1$s</string>
     <string name="setup_error_unconfirmed">Сервер ответил, но это не похоже на hyperion. Возможно, перед ним стоит страница входа (например, Pangolin). Можно продолжить и войти там.</string>
     <string name="setup_warning_http">Обычный HTTP не шифруется. Используйте его только в домашней сети. Вход может не сработать, если сервер ожидает HTTPS.</string>
+    <string name="setup_login_page">Этот сервер защищён страницей входа (например, Pangolin). Сначала войдите там, затем в hyperion.</string>
     <string name="error_title">Не удалось подключиться</string>
     <string name="error_network">Не удалось загрузить %1$s. Проверьте подключение и сервер.</string>
     <string name="error_ssl">Сертификат %1$s не является доверенным, поэтому страница не загружена.</string>

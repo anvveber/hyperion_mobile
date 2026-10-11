@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.WindowCompat
 
 /** First-launch screen (and "Change server"): asks for the server address and checks it. */
@@ -96,6 +97,10 @@ class SetupActivity : Activity() {
                 setBusy(false)
                 when (result) {
                     ServerCheck.Result.Ok -> finishWith(server)
+                    ServerCheck.Result.LoginPage -> {
+                        Toast.makeText(this, R.string.setup_login_page, Toast.LENGTH_LONG).show()
+                        finishWith(server)
+                    }
                     ServerCheck.Result.Unconfirmed -> offerContinue(server, prefix + getString(R.string.setup_error_unconfirmed))
                     is ServerCheck.Result.Unreachable -> offerContinue(
                         server,

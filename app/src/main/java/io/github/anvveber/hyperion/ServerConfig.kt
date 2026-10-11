@@ -69,6 +69,24 @@ object ServerConfig {
     }
 
     /**
+     * True for http(s) hosts under the same parent domain as the server, for
+     * example auth.example.org next to eye.example.org. Reverse-proxy login
+     * pages usually live there. Uses the last two labels of the server's
+     * host, so a server directly on a two-label host has no siblings beyond
+     * its own subdomains.
+     */
+    fun isSibling(url: Uri, server: Uri): Boolean {
+        val scheme = url.scheme?.lowercase()
+        if (scheme != "https" && scheme != "http") return false
+        val host = url.host?.lowercase() ?: return false
+        val serverHost = server.host?.lowercase() ?: return false
+        val labels = serverHost.split('.')
+        if (labels.size < 2 || labels.all { it.all(Char::isDigit) }) return false
+        val parent = labels.takeLast(2).joinToString(".")
+        return host == parent || host.endsWith(".$parent")
+    }
+
+    /**
      * Resolves an in-app path such as "/people/new" against the server.
      * Anything that would leave the server's origin falls back to the root.
      */
