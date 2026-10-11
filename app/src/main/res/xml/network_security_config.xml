@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--
+      Self-hosted servers come in every shape: a public HTTPS domain behind a
+      reverse proxy, a LAN address over plain HTTP, or a private CA. Plain HTTP
+      is allowed so a home-network address works (the setup screen warns about
+      it), and user-installed CAs are trusted so a private CA works.
+    -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

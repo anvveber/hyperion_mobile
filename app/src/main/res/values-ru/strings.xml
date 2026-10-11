@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_tagline">Ваши люди на вашем собственном сервере.</string>
+    <string name="setup_server_label">Адрес сервера</string>
+    <string name="setup_connect">Подключиться</string>
+    <string name="setup_cancel">Отмена</string>
+    <string name="setup_continue_anyway">Всё равно продолжить</string>
+    <string name="setup_checking">Проверка сервера…</string>
+    <string name="setup_note">Адрес хранится только на этом телефоне. Войти в аккаунт можно на следующем экране.</string>
+    <string name="setup_error_empty">Введите адрес сервера.</string>
+    <string name="setup_error_invalid">Это не похоже на веб-адрес.</string>
+    <string name="setup_error_unreachable">Не удалось связаться с сервером: %1$s</string>
+    <string name="setup_error_unconfirmed">Сервер ответил, но это не похоже на hyperion. Возможно, перед ним стоит страница входа (например, Pangolin). Можно продолжить и войти там.</string>
+    <string name="setup_warning_http">Обычный HTTP не шифруется. Используйте его только в домашней сети. Вход может не сработать, если сервер ожидает HTTPS.</string>
+    <string name="error_title">Не удалось подключиться</string>
+    <string name="error_network">Не удалось загрузить %1$s. Проверьте подключение и сервер.</string>
+    <string name="error_ssl">Сертификат %1$s не является доверенным, поэтому страница не загружена.</string>
+    <string name="action_retry">Повторить</string>
+    <string name="action_change_server">Сменить сервер</string>
+    <string name="download_started">Загрузка %1$s</string>
+    <string name="download_saved">Сохранено в «Загрузки»: %1$s</string>
+    <string name="download_failed">Ошибка загрузки</string>
+    <string name="no_app_for_link">На этом телефоне нет приложения, которое может открыть эту ссылку.</string>
+    <string name="no_file_picker">На этом телефоне нет приложения для выбора файлов.</string>
+    <string name="shortcut_add_person">Добавить человека</string>
+    <string name="shortcut_search">Поиск</string>
+    <string name="shortcut_change_server">Сменить сервер</string>
+</resources>

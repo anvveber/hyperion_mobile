@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_tagline">Vos proches, sur votre propre serveur.</string>
+    <string name="setup_server_label">Adresse du serveur</string>
+    <string name="setup_connect">Se connecter</string>
+    <string name="setup_cancel">Annuler</string>
+    <string name="setup_continue_anyway">Continuer quand même</string>
+    <string name="setup_checking">Vérification du serveur…</string>
+    <string name="setup_note">L\'adresse est enregistrée uniquement sur ce téléphone. Vous vous connectez avec votre compte à l\'écran suivant.</string>
+    <string name="setup_error_empty">Saisissez l\'adresse de votre serveur.</string>
+    <string name="setup_error_invalid">Cela ne ressemble pas à une adresse web.</string>
+    <string name="setup_error_unreachable">Impossible de joindre le serveur : %1$s</string>
+    <string name="setup_error_unconfirmed">Le serveur a répondu, mais ne ressemble pas à hyperion. Il est peut-être derrière une page de connexion (par exemple Pangolin). Vous pouvez continuer et vous y connecter.</string>
+    <string name="setup_warning_http">Le HTTP simple n\'est pas chiffré. Utilisez-le uniquement sur votre réseau domestique. La connexion peut échouer si le serveur attend HTTPS.</string>
+    <string name="error_title">Échec de la connexion</string>
+    <string name="error_network">Impossible de charger %1$s. Vérifiez votre connexion et le serveur.</string>
+    <string name="error_ssl">Le certificat de %1$s n\'est pas fiable, la page n\'a donc pas été chargée.</string>
+    <string name="action_retry">Réessayer</string>
+    <string name="action_change_server">Changer de serveur</string>
+    <string name="download_started">Téléchargement de %1$s</string>
+    <string name="download_saved">Enregistré dans Téléchargements : %1$s</string>
+    <string name="download_failed">Échec du téléchargement</string>
+    <string name="no_app_for_link">Aucune application de ce téléphone ne peut ouvrir ce lien.</string>
+    <string name="no_file_picker">Aucune application de ce téléphone ne peut choisir des fichiers.</string>
+    <string name="shortcut_add_person">Ajouter une personne</string>
+    <string name="shortcut_search">Rechercher</string>
+    <string name="shortcut_change_server">Changer de serveur</string>
+</resources>

@@ -1,0 +1,125 @@
+name: Android App
+
+# Builds the Android app and publishes the APK as a GitHub release,
+# so it can be downloaded straight onto a phone and sideloaded.
+#
+# - Pull requests: the APK goes to the rolling "android-preview" pre-release.
+# - main: the APK goes to a versioned "android-v1.0.N" release.
+#
+# Signing: set the ANDROID_KEYSTORE_BASE64 and ANDROID_KEYSTORE_PASSWORD
+# repository secrets (see README.md). Without them every
+# build gets a throwaway debug key, and Android refuses to install one build
+# over another, so each update would need an uninstall first.
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    env:
+      VERSION_NAME: 1.0.${{ github.run_number }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Load signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+            echo "ANDROID_KEYSTORE_PATH=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+            echo "SIGNED_WITH=release" >> "$GITHUB_ENV"
+          else
+            echo "::warning::ANDROID_KEYSTORE_BASE64 is not set. This APK is signed with a throwaway debug key and cannot be installed over a previous build."
+            echo "SIGNED_WITH=debug" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build release APK
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: ./gradlew --no-daemon assembleRelease -PversionCode=${{ github.run_number }} -PversionName=$VERSION_NAME
+
+      - name: Rename APK
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/release/app-release.apk "dist/hyperion-$VERSION_NAME.apk"
+          ( cd dist && sha256sum "hyperion-$VERSION_NAME.apk" > "hyperion-$VERSION_NAME.apk.sha256" )
+
+      - name: Upload APK as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hyperion-${{ env.VERSION_NAME }}
+          path: dist/
+
+      - name: Publish preview pre-release
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          gh release delete android-preview --yes --cleanup-tag 2>/dev/null || true
+          {
+            echo "Preview build $VERSION_NAME of the Android app from pull request #$PR_NUMBER (commit $HEAD_SHA)."
+            echo
+            echo "Download the .apk file below on your phone and open it to install."
+            if [ "$SIGNED_WITH" = "debug" ]; then
+              echo
+              echo "> [!WARNING]"
+              echo "> Signed with a throwaway debug key. Uninstall any earlier build before installing this one."
+            fi
+          } > notes.md
+          gh release create android-preview dist/* \
+            --target "$HEAD_SHA" \
+            --title "Android app preview ($VERSION_NAME)" \
+            --notes-file notes.md \
+            --prerelease \
+            --latest=false
+
+      - name: Publish release
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "Android app $VERSION_NAME, built from commit $GITHUB_SHA."
+            echo
+            echo "Download the .apk file below on your phone and open it to install. It updates an existing install in place."
+            if [ "$SIGNED_WITH" = "debug" ]; then
+              echo
+              echo "> [!WARNING]"
+              echo "> Signed with a throwaway debug key. Uninstall any earlier build before installing this one."
+            fi
+          } > notes.md
+          gh release create "android-v$VERSION_NAME" dist/* \
+            --target "$GITHUB_SHA" \
+            --title "Android app $VERSION_NAME" \
+            --notes-file notes.md \
+            --latest=false

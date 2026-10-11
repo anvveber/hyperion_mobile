@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mirrors the dark tokens in hyperion's app/globals.css. -->
+<resources>
+    <color name="background">#000000</color>
+    <color name="surface">#0A0A0A</color>
+    <color name="foreground">#EDEDED</color>
+    <color name="secondary">#A3A3A3</color>
+    <color name="muted">#99EDEDED</color>
+    <color name="border">#29FFFFFF</color>
+    <color name="grid_line">#0EFFFFFF</color>
+    <color name="primary">#FFFFFF</color>
+    <color name="on_primary">#000000</color>
+    <color name="warning">#FA7A7E</color>
+</resources>

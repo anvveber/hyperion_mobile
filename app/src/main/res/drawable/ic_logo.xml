@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vector copy of public/logo.svg. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="60dp"
+    android:viewportWidth="804"
+    android:viewportHeight="502">
+    <group android:translateX="10" android:translateY="10">
+        <path android:pathData="M0,241C196,-80 588,-80 784,241C588,562 196,562 0,241Z" android:fillColor="#FFFFFF" android:strokeColor="#000000" android:strokeWidth="4" android:strokeLineJoin="round" />
+        <path android:pathData="M59,241C226,-11 558,-11 725,241C558,494 226,494 59,241Z" android:fillColor="#1A1A1A" android:strokeColor="#000000" android:strokeWidth="3" android:strokeLineJoin="round" />
+        <path android:pathData="M244,241a148,148 0,1 0,296 0a148,148 0,1 0,-296 0Z" android:fillColor="#FFFFFF" android:strokeColor="#000000" android:strokeWidth="3" />
+        <path android:pathData="M394,143Q404,233 486,243Q404,253 394,343Q384,253 302,243Q384,233 394,143Z" android:fillColor="#000000" />
+    </group>
+</vector>

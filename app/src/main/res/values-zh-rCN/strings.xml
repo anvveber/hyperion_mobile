@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_tagline">你的人脉，存放在你自己的服务器上。</string>
+    <string name="setup_server_label">服务器地址</string>
+    <string name="setup_connect">连接</string>
+    <string name="setup_cancel">取消</string>
+    <string name="setup_continue_anyway">仍然继续</string>
+    <string name="setup_checking">正在检查服务器…</string>
+    <string name="setup_note">地址只保存在这部手机上。你将在下一个页面用自己的账号登录。</string>
+    <string name="setup_error_empty">请输入服务器地址。</string>
+    <string name="setup_error_invalid">这看起来不像网址。</string>
+    <string name="setup_error_unreachable">无法连接服务器：%1$s</string>
+    <string name="setup_error_unconfirmed">服务器有响应，但看起来不是 hyperion。它可能位于登录页面（例如 Pangolin）之后。你可以继续，在那里登录。</string>
+    <string name="setup_warning_http">普通 HTTP 不加密。请只在家庭网络中使用。如果服务器要求 HTTPS，登录可能会失败。</string>
+    <string name="error_title">连接失败</string>
+    <string name="error_network">无法加载 %1$s。请检查网络连接和服务器。</string>
+    <string name="error_ssl">%1$s 的证书不受信任，因此未加载页面。</string>
+    <string name="action_retry">重试</string>
+    <string name="action_change_server">更换服务器</string>
+    <string name="download_started">正在下载 %1$s</string>
+    <string name="download_saved">已保存到“下载”：%1$s</string>
+    <string name="download_failed">下载失败</string>
+    <string name="no_app_for_link">这部手机上没有能打开该链接的应用。</string>
+    <string name="no_file_picker">这部手机上没有能选择文件的应用。</string>
+    <string name="shortcut_add_person">添加联系人</string>
+    <string name="shortcut_search">搜索</string>
+    <string name="shortcut_change_server">更换服务器</string>
+</resources>

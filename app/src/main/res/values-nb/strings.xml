@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_tagline">Menneskene dine, på din egen server.</string>
+    <string name="setup_server_label">Serveradresse</string>
+    <string name="setup_connect">Koble til</string>
+    <string name="setup_cancel">Avbryt</string>
+    <string name="setup_continue_anyway">Fortsett likevel</string>
+    <string name="setup_checking">Sjekker serveren…</string>
+    <string name="setup_note">Adressen lagres bare på denne telefonen. Du logger inn med kontoen din på neste skjerm.</string>
+    <string name="setup_error_empty">Skriv inn serveradressen.</string>
+    <string name="setup_error_invalid">Det ser ikke ut som en nettadresse.</string>
+    <string name="setup_error_unreachable">Fikk ikke kontakt med serveren: %1$s</string>
+    <string name="setup_error_unconfirmed">Serveren svarte, men så ikke ut som hyperion. Den kan ligge bak en innloggingsside (for eksempel Pangolin). Du kan fortsette og logge inn der.</string>
+    <string name="setup_warning_http">Vanlig HTTP er ikke kryptert. Bruk det bare på hjemmenettet. Innlogging kan feile hvis serveren forventer HTTPS.</string>
+    <string name="error_title">Tilkoblingen mislyktes</string>
+    <string name="error_network">Kunne ikke laste %1$s. Sjekk tilkoblingen og serveren.</string>
+    <string name="error_ssl">Sertifikatet til %1$s er ikke klarert, så siden ble ikke lastet.</string>
+    <string name="action_retry">Prøv igjen</string>
+    <string name="action_change_server">Bytt server</string>
+    <string name="download_started">Laster ned %1$s</string>
+    <string name="download_saved">Lagret i Nedlastinger: %1$s</string>
+    <string name="download_failed">Nedlastingen mislyktes</string>
+    <string name="no_app_for_link">Ingen app på denne telefonen kan åpne lenken.</string>
+    <string name="no_file_picker">Ingen app på denne telefonen kan velge filer.</string>
+    <string name="shortcut_add_person">Legg til person</string>
+    <string name="shortcut_search">Søk</string>
+    <string name="shortcut_change_server">Bytt server</string>
+</resources>
