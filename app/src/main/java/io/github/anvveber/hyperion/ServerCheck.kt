@@ -14,7 +14,15 @@ object ServerCheck {
         /** Answered like hyperion's /api/health. */
         data object Ok : Result
 
-        /** Something answered, but not hyperion (often a reverse-proxy login page). */
+        /**
+         * A login page in front of the server answered instead (Pangolin,
+         * Authelia, Authentik and the like): the request was sent to another
+         * host, refused with 401/403, or the page names Pangolin. The app
+         * shows that page so the user can sign in there first.
+         */
+        data object LoginPage : Result
+
+        /** Something answered, but neither hyperion nor a recognisable login page. */
         data object Unconfirmed : Result
 
         data class Unreachable(val reason: String) : Result
@@ -34,6 +42,7 @@ object ServerCheck {
                 setRequestProperty("Accept", "application/json")
             }
             val code = connection.responseCode
+            if (code == 401 || code == 403) return Result.LoginPage
             if (code !in 200..299) return Result.Unconfirmed
             val body = connection.inputStream.use { readLimited(it) }
             val status = try {
@@ -41,7 +50,13 @@ object ServerCheck {
             } catch (e: JSONException) {
                 ""
             }
-            if (status == "healthy") Result.Ok else Result.Unconfirmed
+            when {
+                status == "healthy" -> Result.Ok
+                // getURL() is the address after redirects.
+                !connection.url.host.equals(server.host, ignoreCase = true) -> Result.LoginPage
+                body.contains("pangolin", ignoreCase = true) -> Result.LoginPage
+                else -> Result.Unconfirmed
+            }
         } catch (e: IOException) {
             Result.Unreachable(e.localizedMessage ?: e.javaClass.simpleName)
         } finally {

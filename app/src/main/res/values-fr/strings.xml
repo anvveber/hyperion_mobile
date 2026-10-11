@@ -12,6 +12,7 @@
     <string name="setup_error_unreachable">Impossible de joindre le serveur : %1$s</string>
     <string name="setup_error_unconfirmed">Le serveur a répondu, mais ne ressemble pas à hyperion. Il est peut-être derrière une page de connexion (par exemple Pangolin). Vous pouvez continuer et vous y connecter.</string>
     <string name="setup_warning_http">Le HTTP simple n\'est pas chiffré. Utilisez-le uniquement sur votre réseau domestique. La connexion peut échouer si le serveur attend HTTPS.</string>
+    <string name="setup_login_page">Une page de connexion protège ce serveur (par exemple Pangolin). Connectez-vous d\'abord là, puis à hyperion.</string>
     <string name="error_title">Échec de la connexion</string>
     <string name="error_network">Impossible de charger %1$s. Vérifiez votre connexion et le serveur.</string>
     <string name="error_ssl">Le certificat de %1$s n\'est pas fiable, la page n\'a donc pas été chargée.</string>

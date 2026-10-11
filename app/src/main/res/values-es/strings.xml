@@ -12,6 +12,7 @@
     <string name="setup_error_unreachable">No se pudo conectar con el servidor: %1$s</string>
     <string name="setup_error_unconfirmed">El servidor respondió, pero no parecía hyperion. Puede que haya una página de inicio de sesión delante (por ejemplo Pangolin). Puedes continuar e iniciar sesión allí.</string>
     <string name="setup_warning_http">HTTP sin cifrar no es seguro. Úsalo solo en tu red doméstica. El inicio de sesión puede fallar si el servidor espera HTTPS.</string>
+    <string name="setup_login_page">Una página de inicio de sesión protege este servidor (por ejemplo Pangolin). Inicia sesión allí primero y después en hyperion.</string>
     <string name="error_title">Error de conexión</string>
     <string name="error_network">No se pudo cargar %1$s. Comprueba tu conexión y el servidor.</string>
     <string name="error_ssl">El certificado de %1$s no es de confianza, así que la página no se cargó.</string>

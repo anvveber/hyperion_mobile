@@ -22,12 +22,21 @@ On GrapheneOS you can also use [Obtainium](https://obtainium.imranr.dev/) to ins
 The app asks for your server address, for example `https://eye.example.org`. It checks the address before continuing:
 
 - If the server answers like hyperion, the app opens its login page.
-- If something else answers, usually the login page of a reverse proxy such as Pangolin or Authelia in front of the server, the app says so and offers **Continue anyway**. Sign in to the proxy first, then to hyperion.
+- If a login page in front of the server answers (Pangolin, Authelia, Authentik and similar), the app opens it. Sign in to it first, then to hyperion. The app keeps both logins.
+- If something else answers, the app says so and offers **Continue anyway**.
 - If nothing answers, check the address and your connection. **Continue anyway** is still offered, for example when you set the app up before the server is reachable.
 
 Sign in with your hyperion account as you would in a browser. The app keeps you signed in until you sign out or the session expires.
 
 To switch to another server later, long-press the app icon and choose **Change server**, or tap **Change server** on the error screen.
+
+## Servers behind Pangolin
+
+The Pangolin login page opens inside the app, and so do other pages on the same parent domain (for example `pangolin.example.org` next to `eye.example.org`), so the login cookie ends up in the app. You stay signed in for as long as Pangolin's session lasts. When it expires, Pangolin's login page appears again.
+
+Logins that go through Google do not work inside apps: Google blocks its sign-in page in embedded browsers. Use a Pangolin password, PIN or another identity provider for this resource.
+
+Pangolin's **Bypass Auth** access rules are not needed. A bypass rule on a path such as `/` would let anyone on the internet reach hyperion's own login page without passing Pangolin first.
 
 ## Notifications
 

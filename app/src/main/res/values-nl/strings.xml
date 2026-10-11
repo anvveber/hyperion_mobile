@@ -12,6 +12,7 @@
     <string name="setup_error_unreachable">Kan de server niet bereiken: %1$s</string>
     <string name="setup_error_unconfirmed">De server antwoordde, maar leek niet op hyperion. Misschien staat er een inlogpagina voor (bijvoorbeeld Pangolin). Je kunt doorgaan en daar inloggen.</string>
     <string name="setup_warning_http">Gewone HTTP is niet versleuteld. Gebruik het alleen op je thuisnetwerk. Inloggen kan mislukken als de server HTTPS verwacht.</string>
+    <string name="setup_login_page">Een inlogpagina beschermt deze server (bijvoorbeeld Pangolin). Log daar eerst in, daarna in hyperion.</string>
     <string name="error_title">Verbinding mislukt</string>
     <string name="error_network">Kon %1$s niet laden. Controleer je verbinding en de server.</string>
     <string name="error_ssl">Het certificaat van %1$s wordt niet vertrouwd, dus de pagina is niet geladen.</string>

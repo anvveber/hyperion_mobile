@@ -395,12 +395,15 @@ class MainActivity : Activity() {
             if (!isUserGesture) return false
             val transport = resultMsg.obj as? WebView.WebViewTransport ?: return false
             // A throwaway WebView that only exists to learn the URL of a
-            // target="_blank" link or window.open() call.
+            // target="_blank" link or window.open() call. Pages on the server
+            // or a sibling host (a Pangolin login at auth.example.org for a
+            // server at eye.example.org) stay in the app so login cookies land
+            // here; everything else goes to the matching app.
             val popup = WebView(this@MainActivity)
             popup.webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(popupView: WebView, request: WebResourceRequest): Boolean {
                     val url = request.url
-                    if (ServerConfig.isSameOrigin(url, server)) {
+                    if (ServerConfig.isSameOrigin(url, server) || ServerConfig.isSibling(url, server)) {
                         webView.loadUrl(url.toString())
                     } else {
                         openExternally(url)

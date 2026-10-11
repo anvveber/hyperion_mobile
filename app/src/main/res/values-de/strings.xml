@@ -12,6 +12,7 @@
     <string name="setup_error_unreachable">Server nicht erreichbar: %1$s</string>
     <string name="setup_error_unconfirmed">Der Server hat geantwortet, sah aber nicht wie hyperion aus. Vielleicht liegt eine Anmeldeseite davor (zum Beispiel Pangolin). Du kannst fortfahren und dich dort anmelden.</string>
     <string name="setup_warning_http">Einfaches HTTP ist unverschlüsselt. Nutze es nur im Heimnetz. Die Anmeldung kann fehlschlagen, wenn der Server HTTPS erwartet.</string>
+    <string name="setup_login_page">Eine Anmeldeseite schützt diesen Server (zum Beispiel Pangolin). Melde dich zuerst dort an, dann bei hyperion.</string>
     <string name="error_title">Verbindung fehlgeschlagen</string>
     <string name="error_network">%1$s konnte nicht geladen werden. Prüfe deine Verbindung und den Server.</string>
     <string name="error_ssl">Dem Zertifikat von %1$s wird nicht vertraut, daher wurde die Seite nicht geladen.</string>
