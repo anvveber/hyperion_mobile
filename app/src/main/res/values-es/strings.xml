@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_tagline">Tu gente, en tu propio servidor.</string>
+    <string name="setup_server_label">Dirección del servidor</string>
+    <string name="setup_connect">Conectar</string>
+    <string name="setup_cancel">Cancelar</string>
+    <string name="setup_continue_anyway">Continuar de todos modos</string>
+    <string name="setup_checking">Comprobando el servidor…</string>
+    <string name="setup_note">La dirección solo se guarda en este teléfono. Inicias sesión con tu cuenta en la siguiente pantalla.</string>
+    <string name="setup_error_empty">Introduce la dirección de tu servidor.</string>
+    <string name="setup_error_invalid">Eso no parece una dirección web.</string>
+    <string name="setup_error_unreachable">No se pudo conectar con el servidor: %1$s</string>
+    <string name="setup_error_unconfirmed">El servidor respondió, pero no parecía hyperion. Puede que haya una página de inicio de sesión delante (por ejemplo Pangolin). Puedes continuar e iniciar sesión allí.</string>
+    <string name="setup_warning_http">HTTP sin cifrar no es seguro. Úsalo solo en tu red doméstica. El inicio de sesión puede fallar si el servidor espera HTTPS.</string>
+    <string name="error_title">Error de conexión</string>
+    <string name="error_network">No se pudo cargar %1$s. Comprueba tu conexión y el servidor.</string>
+    <string name="error_ssl">El certificado de %1$s no es de confianza, así que la página no se cargó.</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="action_change_server">Cambiar servidor</string>
+    <string name="download_started">Descargando %1$s</string>
+    <string name="download_saved">Guardado en Descargas: %1$s</string>
+    <string name="download_failed">Error en la descarga</string>
+    <string name="no_app_for_link">Ninguna app de este teléfono puede abrir ese enlace.</string>
+    <string name="no_file_picker">Ninguna app de este teléfono puede elegir archivos.</string>
+    <string name="shortcut_add_person">Añadir persona</string>
+    <string name="shortcut_search">Buscar</string>
+    <string name="shortcut_change_server">Cambiar servidor</string>
+</resources>

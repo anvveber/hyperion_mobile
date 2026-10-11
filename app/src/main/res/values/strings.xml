@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Hyperion</string>
+
+    <string name="setup_tagline">Your people, on your own server.</string>
+    <string name="setup_server_label">Server address</string>
+    <string name="setup_server_hint" translatable="false">https://eye.example.org</string>
+    <string name="setup_connect">Connect</string>
+    <string name="setup_cancel">Cancel</string>
+    <string name="setup_continue_anyway">Continue anyway</string>
+    <string name="setup_checking">Checking server…</string>
+    <string name="setup_note">The address is stored only on this phone. You sign in with your account on the next screen.</string>
+    <string name="setup_error_empty">Enter your server address.</string>
+    <string name="setup_error_invalid">That does not look like a web address.</string>
+    <string name="setup_error_unreachable">Could not reach the server: %1$s</string>
+    <string name="setup_error_unconfirmed">The server answered, but it did not look like hyperion. It may be behind a login page (for example Pangolin). You can continue and sign in there.</string>
+    <string name="setup_warning_http">Plain HTTP is not encrypted. Use it only on your home network. Signing in can fail if the server expects HTTPS.</string>
+
+    <string name="error_title">Connection failed</string>
+    <string name="error_network">Could not load %1$s. Check your connection and the server.</string>
+    <string name="error_ssl">The certificate of %1$s is not trusted, so the page was not loaded.</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_change_server">Change server</string>
+
+    <string name="download_started">Downloading %1$s</string>
+    <string name="download_saved">Saved to Downloads: %1$s</string>
+    <string name="download_failed">Download failed</string>
+    <string name="no_app_for_link">No app on this phone can open that link.</string>
+    <string name="no_file_picker">No app on this phone can pick files.</string>
+
+    <string name="shortcut_add_person">Add person</string>
+    <string name="shortcut_search">Search</string>
+    <string name="shortcut_change_server">Change server</string>
+</resources>

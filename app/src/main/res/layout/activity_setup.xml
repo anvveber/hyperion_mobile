@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/panel"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_horizontal"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_logo" />
+
+                <TextView
+                    style="@style/Hyperion.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/app_name" />
+
+                <TextView
+                    style="@style/Hyperion.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@string/setup_tagline" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@color/border" />
+
+                <TextView
+                    style="@style/Hyperion.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/server_input"
+                    android:text="@string/setup_server_label" />
+
+                <EditText
+                    android:id="@+id/server_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:autofillHints="url"
+                    android:background="@drawable/input_field"
+                    android:fontFamily="monospace"
+                    android:hint="@string/setup_server_hint"
+                    android:imeOptions="actionGo"
+                    android:inputType="textUri"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:singleLine="true"
+                    android:textColor="@color/foreground"
+                    android:textColorHint="@color/muted"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/status"
+                    style="@style/Hyperion.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:accessibilityLiveRegion="polite"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/connect"
+                    style="@style/Hyperion.Button.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/setup_connect" />
+
+                <Button
+                    android:id="@+id/continue_anyway"
+                    style="@style/Hyperion.Button.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/setup_continue_anyway"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/cancel"
+                    style="@style/Hyperion.Button.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/setup_cancel"
+                    android:visibility="gone" />
+
+                <TextView
+                    style="@style/Hyperion.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/setup_note"
+                    android:textColor="@color/muted"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_add"
+        android:shortcutId="add_person"
+        android:shortcutShortLabel="@string/shortcut_add_person">
+        <intent
+            android:action="io.github.anvveber.hyperion.OPEN_PATH"
+            android:targetClass="io.github.anvveber.hyperion.MainActivity"
+            android:targetPackage="io.github.anvveber.hyperion">
+            <extra android:name="path" android:value="/people/new" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_search"
+        android:shortcutId="search"
+        android:shortcutShortLabel="@string/shortcut_search">
+        <intent
+            android:action="io.github.anvveber.hyperion.OPEN_PATH"
+            android:targetClass="io.github.anvveber.hyperion.MainActivity"
+            android:targetPackage="io.github.anvveber.hyperion">
+            <extra android:name="path" android:value="/search" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_server"
+        android:shortcutId="change_server"
+        android:shortcutShortLabel="@string/shortcut_change_server">
+        <intent
+            android:action="io.github.anvveber.hyperion.CHANGE_SERVER"
+            android:targetClass="io.github.anvveber.hyperion.MainActivity"
+            android:targetPackage="io.github.anvveber.hyperion" />
+    </shortcut>
+</shortcuts>

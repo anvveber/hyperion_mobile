@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_tagline">Jouw mensen, op je eigen server.</string>
+    <string name="setup_server_label">Serveradres</string>
+    <string name="setup_connect">Verbinden</string>
+    <string name="setup_cancel">Annuleren</string>
+    <string name="setup_continue_anyway">Toch doorgaan</string>
+    <string name="setup_checking">Server controleren…</string>
+    <string name="setup_note">Het adres wordt alleen op deze telefoon opgeslagen. Je logt in met je account op het volgende scherm.</string>
+    <string name="setup_error_empty">Vul je serveradres in.</string>
+    <string name="setup_error_invalid">Dat lijkt geen webadres.</string>
+    <string name="setup_error_unreachable">Kan de server niet bereiken: %1$s</string>
+    <string name="setup_error_unconfirmed">De server antwoordde, maar leek niet op hyperion. Misschien staat er een inlogpagina voor (bijvoorbeeld Pangolin). Je kunt doorgaan en daar inloggen.</string>
+    <string name="setup_warning_http">Gewone HTTP is niet versleuteld. Gebruik het alleen op je thuisnetwerk. Inloggen kan mislukken als de server HTTPS verwacht.</string>
+    <string name="error_title">Verbinding mislukt</string>
+    <string name="error_network">Kon %1$s niet laden. Controleer je verbinding en de server.</string>
+    <string name="error_ssl">Het certificaat van %1$s wordt niet vertrouwd, dus de pagina is niet geladen.</string>
+    <string name="action_retry">Opnieuw proberen</string>
+    <string name="action_change_server">Server wijzigen</string>
+    <string name="download_started">%1$s downloaden</string>
+    <string name="download_saved">Opgeslagen in Downloads: %1$s</string>
+    <string name="download_failed">Download mislukt</string>
+    <string name="no_app_for_link">Geen app op deze telefoon kan die link openen.</string>
+    <string name="no_file_picker">Geen app op deze telefoon kan bestanden kiezen.</string>
+    <string name="shortcut_add_person">Persoon toevoegen</string>
+    <string name="shortcut_search">Zoeken</string>
+    <string name="shortcut_change_server">Server wijzigen</string>
+</resources>

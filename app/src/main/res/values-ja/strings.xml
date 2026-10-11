@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_tagline">あなたの大切な人たちを、あなたのサーバーに。</string>
+    <string name="setup_server_label">サーバーアドレス</string>
+    <string name="setup_connect">接続</string>
+    <string name="setup_cancel">キャンセル</string>
+    <string name="setup_continue_anyway">このまま続行</string>
+    <string name="setup_checking">サーバーを確認中…</string>
+    <string name="setup_note">アドレスはこの端末にのみ保存されます。次の画面でアカウントにサインインします。</string>
+    <string name="setup_error_empty">サーバーアドレスを入力してください。</string>
+    <string name="setup_error_invalid">ウェブアドレスの形式ではありません。</string>
+    <string name="setup_error_unreachable">サーバーに接続できません: %1$s</string>
+    <string name="setup_error_unconfirmed">サーバーは応答しましたが、hyperion ではないようです。ログインページ（Pangolin など）の後ろにある可能性があります。続行してそこでサインインできます。</string>
+    <string name="setup_warning_http">HTTP は暗号化されません。自宅のネットワーク内でのみ使用してください。サーバーが HTTPS を前提としている場合、サインインに失敗することがあります。</string>
+    <string name="error_title">接続に失敗しました</string>
+    <string name="error_network">%1$s を読み込めませんでした。接続とサーバーを確認してください。</string>
+    <string name="error_ssl">%1$s の証明書は信頼されていないため、ページを読み込みませんでした。</string>
+    <string name="action_retry">再試行</string>
+    <string name="action_change_server">サーバーを変更</string>
+    <string name="download_started">%1$s をダウンロード中</string>
+    <string name="download_saved">ダウンロードに保存しました: %1$s</string>
+    <string name="download_failed">ダウンロードに失敗しました</string>
+    <string name="no_app_for_link">このリンクを開けるアプリがありません。</string>
+    <string name="no_file_picker">ファイルを選択できるアプリがありません。</string>
+    <string name="shortcut_add_person">人物を追加</string>
+    <string name="shortcut_search">検索</string>
+    <string name="shortcut_change_server">サーバーを変更</string>
+</resources>

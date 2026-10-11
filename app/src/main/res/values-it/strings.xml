@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setup_tagline">Le tue persone, sul tuo server.</string>
+    <string name="setup_server_label">Indirizzo del server</string>
+    <string name="setup_connect">Connetti</string>
+    <string name="setup_cancel">Annulla</string>
+    <string name="setup_continue_anyway">Continua comunque</string>
+    <string name="setup_checking">Verifica del server…</string>
+    <string name="setup_note">L\'indirizzo viene salvato solo su questo telefono. Accedi con il tuo account nella schermata successiva.</string>
+    <string name="setup_error_empty">Inserisci l\'indirizzo del server.</string>
+    <string name="setup_error_invalid">Non sembra un indirizzo web.</string>
+    <string name="setup_error_unreachable">Impossibile raggiungere il server: %1$s</string>
+    <string name="setup_error_unconfirmed">Il server ha risposto, ma non sembrava hyperion. Potrebbe esserci una pagina di accesso davanti (ad esempio Pangolin). Puoi continuare e accedere lì.</string>
+    <string name="setup_warning_http">L\'HTTP semplice non è cifrato. Usalo solo sulla rete di casa. L\'accesso può non riuscire se il server si aspetta HTTPS.</string>
+    <string name="error_title">Connessione non riuscita</string>
+    <string name="error_network">Impossibile caricare %1$s. Controlla la connessione e il server.</string>
+    <string name="error_ssl">Il certificato di %1$s non è attendibile, quindi la pagina non è stata caricata.</string>
+    <string name="action_retry">Riprova</string>
+    <string name="action_change_server">Cambia server</string>
+    <string name="download_started">Download di %1$s</string>
+    <string name="download_saved">Salvato in Download: %1$s</string>
+    <string name="download_failed">Download non riuscito</string>
+    <string name="no_app_for_link">Nessuna app su questo telefono può aprire il link.</string>
+    <string name="no_file_picker">Nessuna app su questo telefono può scegliere file.</string>
+    <string name="shortcut_add_person">Aggiungi persona</string>
+    <string name="shortcut_search">Cerca</string>
+    <string name="shortcut_change_server">Cambia server</string>
+</resources>
