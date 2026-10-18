@@ -298,10 +298,18 @@ class MainActivity : Activity() {
 
     /** Paints the area behind the system bars like the page, and picks readable bar icons. */
     private fun applyPageTheme(color: String, dark: Boolean) {
-        val parsed = try {
-            Color.parseColor(color)
-        } catch (e: IllegalArgumentException) {
-            if (dark) Color.BLACK else Color.parseColor("#F4F4F4")
+        val fallback = if (dark) Color.BLACK else Color.parseColor("#F4F4F4")
+        // parseColor throws IllegalArgumentException for unknown colours and
+        // StringIndexOutOfBoundsException for an empty string, which the page
+        // sends while Next.js swaps the theme-color tag during navigation.
+        val parsed = if (color.isBlank()) {
+            fallback
+        } else {
+            try {
+                Color.parseColor(color.trim())
+            } catch (e: RuntimeException) {
+                fallback
+            }
         }
         val light = ColorUtils.calculateLuminance(parsed) > 0.5
         root.setBackgroundColor(parsed)
