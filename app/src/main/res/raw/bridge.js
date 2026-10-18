@@ -99,7 +99,11 @@
   var lastTheme = '';
   function reportTheme() {
     var meta = document.querySelector('meta[name="theme-color"]');
-    var color = meta ? meta.getAttribute('content') || '' : '';
+    var color = meta ? (meta.getAttribute('content') || '').trim() : '';
+    // During client-side navigation Next.js removes the tag and adds it back.
+    // Wait for the new one instead of reporting an empty colour, which would
+    // flash the system bars to the fallback colour.
+    if (!color) return;
     var dark = document.documentElement.classList.contains('dark');
     var key = color + '|' + dark;
     if (key === lastTheme) return;
