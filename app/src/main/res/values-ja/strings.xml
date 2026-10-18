@@ -21,6 +21,10 @@
     <string name="download_started">%1$s をダウンロード中</string>
     <string name="download_saved">ダウンロードに保存しました: %1$s</string>
     <string name="download_failed">ダウンロードに失敗しました</string>
+    <string name="download_too_large">ファイルが大きすぎてアプリで保存できません(上限 18 MB)。このエクスポートにはブラウザを使ってください。</string>
+    <string name="crash_title">前回アプリがクラッシュしました</string>
+    <string name="crash_copy">レポートをコピー</string>
+    <string name="crash_copied">クラッシュレポートをコピーしました</string>
     <string name="no_app_for_link">このリンクを開けるアプリがありません。</string>
     <string name="no_file_picker">ファイルを選択できるアプリがありません。</string>
     <string name="shortcut_add_person">人物を追加</string>

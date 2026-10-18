@@ -21,6 +21,10 @@
     <string name="download_started">%1$s downloaden</string>
     <string name="download_saved">Opgeslagen in Downloads: %1$s</string>
     <string name="download_failed">Download mislukt</string>
+    <string name="download_too_large">Bestand te groot om in de app op te slaan (limiet 18 MB). Gebruik de browser voor deze export.</string>
+    <string name="crash_title">De app is de vorige keer gecrasht</string>
+    <string name="crash_copy">Rapport kopiëren</string>
+    <string name="crash_copied">Crashrapport gekopieerd</string>
     <string name="no_app_for_link">Geen app op deze telefoon kan die link openen.</string>
     <string name="no_file_picker">Geen app op deze telefoon kan bestanden kiezen.</string>
     <string name="shortcut_add_person">Persoon toevoegen</string>

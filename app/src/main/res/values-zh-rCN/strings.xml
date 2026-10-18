@@ -21,6 +21,10 @@
     <string name="download_started">正在下载 %1$s</string>
     <string name="download_saved">已保存到“下载”：%1$s</string>
     <string name="download_failed">下载失败</string>
+    <string name="download_too_large">文件太大,无法在应用中保存(上限 18 MB)。请在浏览器中进行此导出。</string>
+    <string name="crash_title">应用上次崩溃了</string>
+    <string name="crash_copy">复制报告</string>
+    <string name="crash_copied">已复制崩溃报告</string>
     <string name="no_app_for_link">这部手机上没有能打开该链接的应用。</string>
     <string name="no_file_picker">这部手机上没有能选择文件的应用。</string>
     <string name="shortcut_add_person">添加联系人</string>

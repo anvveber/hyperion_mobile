@@ -21,6 +21,10 @@
     <string name="download_started">%1$s wird heruntergeladen</string>
     <string name="download_saved">In Downloads gespeichert: %1$s</string>
     <string name="download_failed">Download fehlgeschlagen</string>
+    <string name="download_too_large">Datei zu groß zum Speichern in der App (Grenze 18 MB). Nutze für diesen Export den Browser.</string>
+    <string name="crash_title">Die App ist beim letzten Mal abgestürzt</string>
+    <string name="crash_copy">Bericht kopieren</string>
+    <string name="crash_copied">Absturzbericht kopiert</string>
     <string name="no_app_for_link">Keine App auf diesem Telefon kann diesen Link öffnen.</string>
     <string name="no_file_picker">Keine App auf diesem Telefon kann Dateien auswählen.</string>
     <string name="shortcut_add_person">Person hinzufügen</string>

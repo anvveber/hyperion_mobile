@@ -13,8 +13,19 @@ import java.io.IOException
 
 /** Saves files the webapp offers for download into the public Downloads folder. */
 object Downloads {
-    /** Base64 text from the page above this size is refused rather than decoded. */
-    const val MAX_BASE64_CHARS = 64 * 1024 * 1024
+    /**
+     * Largest file the page may hand over (bridge.js checks this before
+     * reading the file). Base64 makes it a third bigger, and the text exists
+     * several times over while being parsed and decoded, so this stays well
+     * under the app's memory limit. Larger exports: use the browser.
+     */
+    const val MAX_FILE_BYTES = 18 * 1024 * 1024
+
+    /** Base64 text above this size is refused rather than decoded. */
+    const val MAX_BASE64_CHARS = MAX_FILE_BYTES / 3 * 4 + 4
+
+    /** A whole bridge message: the base64 text plus a little JSON around it. */
+    const val MAX_MESSAGE_CHARS = MAX_BASE64_CHARS + 4096
 
     /**
      * Server-side downloads (audio recordings, calendar files). DownloadManager
@@ -37,7 +48,9 @@ object Downloads {
             setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name)
         }
-        context.getSystemService(DownloadManager::class.java).enqueue(request)
+        val manager = context.getSystemService(DownloadManager::class.java)
+            ?: throw IllegalStateException("DownloadManager is not available")
+        manager.enqueue(request)
         return name
     }
 
@@ -50,6 +63,8 @@ object Downloads {
         val bytes = try {
             Base64.decode(base64, Base64.DEFAULT)
         } catch (e: IllegalArgumentException) {
+            return null
+        } catch (e: OutOfMemoryError) {
             return null
         }
         val name = cleanName(rawName)
@@ -68,6 +83,9 @@ object Downloads {
             resolver.update(uri, values, null, null)
             name
         } catch (e: IOException) {
+            resolver.delete(uri, null, null)
+            null
+        } catch (e: SecurityException) {
             resolver.delete(uri, null, null)
             null
         }

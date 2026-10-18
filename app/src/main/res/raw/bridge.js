@@ -42,11 +42,19 @@
     return href.indexOf('blob:') === 0 || href.indexOf('data:') === 0;
   }
 
+  // Must match Downloads.MAX_FILE_BYTES in the app. Bigger files would be
+  // passed as one huge string and could run the app out of memory.
+  var MAX_FILE_BYTES = 18 * 1024 * 1024;
+
   function save(href, filename) {
     var known = blobs.get(href);
     var pending = known ? Promise.resolve(known) : fetch(href).then(function (r) { return r.blob(); });
     pending
       .then(function (blob) {
+        if (blob.size > MAX_FILE_BYTES) {
+          send({ type: 'download-too-large' });
+          return;
+        }
         var reader = new FileReader();
         reader.onload = function () {
           var result = String(reader.result);

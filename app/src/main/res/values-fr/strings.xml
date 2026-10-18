@@ -21,6 +21,10 @@
     <string name="download_started">Téléchargement de %1$s</string>
     <string name="download_saved">Enregistré dans Téléchargements : %1$s</string>
     <string name="download_failed">Échec du téléchargement</string>
+    <string name="download_too_large">Fichier trop volumineux pour l\'application (limite 18 Mo). Utilisez le navigateur pour cet export.</string>
+    <string name="crash_title">L\'application a planté la dernière fois</string>
+    <string name="crash_copy">Copier le rapport</string>
+    <string name="crash_copied">Rapport de plantage copié</string>
     <string name="no_app_for_link">Aucune application de ce téléphone ne peut ouvrir ce lien.</string>
     <string name="no_file_picker">Aucune application de ce téléphone ne peut choisir des fichiers.</string>
     <string name="shortcut_add_person">Ajouter une personne</string>
