@@ -21,6 +21,10 @@
     <string name="download_started">Laster ned %1$s</string>
     <string name="download_saved">Lagret i Nedlastinger: %1$s</string>
     <string name="download_failed">Nedlastingen mislyktes</string>
+    <string name="download_too_large">Filen er for stor til å lagres i appen (grense 18 MB). Bruk nettleseren for denne eksporten.</string>
+    <string name="crash_title">Appen krasjet forrige gang</string>
+    <string name="crash_copy">Kopier rapport</string>
+    <string name="crash_copied">Krasjrapport kopiert</string>
     <string name="no_app_for_link">Ingen app på denne telefonen kan åpne lenken.</string>
     <string name="no_file_picker">Ingen app på denne telefonen kan velge filer.</string>
     <string name="shortcut_add_person">Legg til person</string>

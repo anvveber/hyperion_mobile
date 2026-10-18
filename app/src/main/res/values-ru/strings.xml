@@ -21,6 +21,10 @@
     <string name="download_started">Загрузка %1$s</string>
     <string name="download_saved">Сохранено в «Загрузки»: %1$s</string>
     <string name="download_failed">Ошибка загрузки</string>
+    <string name="download_too_large">Файл слишком большой для сохранения в приложении (предел 18 МБ). Используйте браузер для этого экспорта.</string>
+    <string name="crash_title">В прошлый раз приложение аварийно завершилось</string>
+    <string name="crash_copy">Скопировать отчёт</string>
+    <string name="crash_copied">Отчёт о сбое скопирован</string>
     <string name="no_app_for_link">На этом телефоне нет приложения, которое может открыть эту ссылку.</string>
     <string name="no_file_picker">На этом телефоне нет приложения для выбора файлов.</string>
     <string name="shortcut_add_person">Добавить человека</string>

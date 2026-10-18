@@ -72,8 +72,8 @@ object ServerConfig {
      * True for http(s) hosts under the same parent domain as the server, for
      * example auth.example.org next to eye.example.org. Reverse-proxy login
      * pages usually live there. Uses the last two labels of the server's
-     * host, so a server directly on a two-label host has no siblings beyond
-     * its own subdomains.
+     * host, or three under a two-level country suffix such as co.uk, so the
+     * parent is never a public suffix shared with unrelated sites.
      */
     fun isSibling(url: Uri, server: Uri): Boolean {
         val scheme = url.scheme?.lowercase()
@@ -82,9 +82,24 @@ object ServerConfig {
         val serverHost = server.host?.lowercase() ?: return false
         val labels = serverHost.split('.')
         if (labels.size < 2 || labels.all { it.all(Char::isDigit) }) return false
-        val parent = labels.takeLast(2).joinToString(".")
+        val keep = if (hasTwoLevelSuffix(labels)) 3 else 2
+        if (labels.size < keep) return false
+        val parent = labels.takeLast(keep).joinToString(".")
         return host == parent || host.endsWith(".$parent")
     }
+
+    /**
+     * Second-level labels that country domains sell under (example.co.uk,
+     * example.com.au). Not the full public suffix list, which Android does not
+     * expose; it covers the common cases, and a miss only means login popups
+     * on a sibling host open in the browser instead of the app.
+     */
+    private val SECOND_LEVEL_LABELS = setOf(
+        "ac", "co", "com", "edu", "gov", "gv", "ltd", "mil", "ne", "net", "nom", "or", "org", "plc", "sch",
+    )
+
+    private fun hasTwoLevelSuffix(labels: List<String>): Boolean =
+        labels.size >= 2 && labels.last().length == 2 && labels[labels.size - 2] in SECOND_LEVEL_LABELS
 
     /**
      * Resolves an in-app path such as "/people/new" against the server.

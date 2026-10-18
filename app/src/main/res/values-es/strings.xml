@@ -21,6 +21,10 @@
     <string name="download_started">Descargando %1$s</string>
     <string name="download_saved">Guardado en Descargas: %1$s</string>
     <string name="download_failed">Error en la descarga</string>
+    <string name="download_too_large">Archivo demasiado grande para guardarlo en la app (límite 18 MB). Usa el navegador para esta exportación.</string>
+    <string name="crash_title">La app se cerró inesperadamente la última vez</string>
+    <string name="crash_copy">Copiar informe</string>
+    <string name="crash_copied">Informe de error copiado</string>
     <string name="no_app_for_link">Ninguna app de este teléfono puede abrir ese enlace.</string>
     <string name="no_file_picker">Ninguna app de este teléfono puede elegir archivos.</string>
     <string name="shortcut_add_person">Añadir persona</string>

@@ -2,13 +2,17 @@ package io.github.anvveber.hyperion
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.ActivityNotFoundException
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.net.http.SslError
+import android.os.Build
 import android.os.Bundle
 import android.os.Message
 import android.view.View
@@ -54,6 +58,11 @@ class MainActivity : Activity() {
     private var failedUrl: String? = null
     private var bridgeInjectedAtStart = false
 
+    /** Set once onRenderProcessGone has destroyed the WebView; recreate() follows. */
+    private var webViewDestroyed = false
+    private val webViewUsable: Boolean
+        get() = ::webView.isInitialized && !webViewDestroyed
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -82,6 +91,25 @@ class MainActivity : Activity() {
         val restored = savedInstanceState != null && webView.restoreState(savedInstanceState) != null
         if (!restored) webView.loadUrl(startUrl(intent).toString())
         if (intent?.action == ACTION_CHANGE_SERVER) openSetup()
+
+        CrashLog.take(this)?.let { showCrashReport(it) }
+    }
+
+    /** Shows what made the app crash last time, with a button to copy it. */
+    private fun showCrashReport(report: String) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.crash_title)
+            .setMessage(report)
+            .setPositiveButton(R.string.crash_copy) { _, _ ->
+                getSystemService(ClipboardManager::class.java)
+                    ?.setPrimaryClip(ClipData.newPlainText("hyperion crash report", report))
+                // Android 13 and later confirm the copy themselves.
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                    Toast.makeText(this, R.string.crash_copied, Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -95,16 +123,17 @@ class MainActivity : Activity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        if (::webView.isInitialized) webView.saveState(outState)
+        // After onRenderProcessGone the WebView is destroyed and has no state to save.
+        if (webViewUsable) webView.saveState(outState)
     }
 
     override fun onResume() {
         super.onResume()
-        if (::webView.isInitialized) webView.onResume()
+        if (webViewUsable) webView.onResume()
     }
 
     override fun onPause() {
-        if (::webView.isInitialized) webView.onPause()
+        if (webViewUsable) webView.onPause()
         // Persist the login cookie now rather than whenever WebView gets round to it.
         CookieManager.getInstance().flush()
         super.onPause()
@@ -114,7 +143,7 @@ class MainActivity : Activity() {
         fileCallback?.onReceiveValue(null)
         fileCallback = null
         // onRenderProcessGone may already have removed and destroyed it.
-        if (::webView.isInitialized && webView.parent != null) {
+        if (webViewUsable && webView.parent != null) {
             root.removeView(webView)
             webView.destroy()
         }
@@ -123,6 +152,11 @@ class MainActivity : Activity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
+        if (!webViewUsable) {
+            @Suppress("DEPRECATION")
+            super.onBackPressed()
+            return
+        }
         if (errorView.visibility == View.VISIBLE && webView.canGoBack()) {
             hideError()
             webView.goBack()
@@ -205,14 +239,35 @@ class MainActivity : Activity() {
         resources.openRawResource(R.raw.bridge).bufferedReader().use { it.readText() }
     }
 
+    /** Called on the UI thread. Large messages (file downloads) are parsed in the background. */
     private fun onBridgeMessage(raw: String) {
+        if (raw.length > Downloads.MAX_MESSAGE_CHARS) {
+            toast(R.string.download_too_large)
+            return
+        }
+        if (raw.length > SMALL_MESSAGE_CHARS) {
+            Thread { handleBridgeMessage(raw) }.start()
+        } else {
+            handleBridgeMessage(raw)
+        }
+    }
+
+    /** Runs on the UI thread or a worker thread; UI work goes through runOnUiThread. */
+    private fun handleBridgeMessage(raw: String) {
         val message = try {
             JSONObject(raw)
         } catch (e: JSONException) {
             return
+        } catch (e: OutOfMemoryError) {
+            toast(R.string.download_too_large)
+            return
         }
         when (message.optString("type")) {
-            "theme" -> applyPageTheme(message.optString("color"), message.optBoolean("dark", true))
+            "theme" -> {
+                val color = message.optString("color")
+                val dark = message.optBoolean("dark", true)
+                runOnUiThread { applyPageTheme(color, dark) }
+            }
             "download" -> {
                 val name = message.optString("name", "download")
                 val mime = message.optString("mime", "application/octet-stream")
@@ -220,6 +275,7 @@ class MainActivity : Activity() {
                 Thread {
                     val saved = Downloads.saveBase64(applicationContext, name, mime, data)
                     runOnUiThread {
+                        if (isDestroyed) return@runOnUiThread
                         val text = if (saved != null) {
                             getString(R.string.download_saved, saved)
                         } else {
@@ -229,7 +285,14 @@ class MainActivity : Activity() {
                     }
                 }.start()
             }
-            "download-failed" -> Toast.makeText(this, R.string.download_failed, Toast.LENGTH_LONG).show()
+            "download-failed" -> toast(R.string.download_failed)
+            "download-too-large" -> toast(R.string.download_too_large)
+        }
+    }
+
+    private fun toast(text: Int) {
+        runOnUiThread {
+            if (!isDestroyed) Toast.makeText(this, text, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -263,6 +326,9 @@ class MainActivity : Activity() {
         } catch (e: IllegalArgumentException) {
             Toast.makeText(this, R.string.download_failed, Toast.LENGTH_LONG).show()
         } catch (e: SecurityException) {
+            Toast.makeText(this, R.string.download_failed, Toast.LENGTH_LONG).show()
+        } catch (e: IllegalStateException) {
+            // No DownloadManager, or the Downloads folder is unavailable.
             Toast.makeText(this, R.string.download_failed, Toast.LENGTH_LONG).show()
         }
     }
@@ -374,6 +440,20 @@ class MainActivity : Activity() {
         override fun onRenderProcessGone(view: WebView, detail: RenderProcessGoneDetail): Boolean {
             // The page's renderer crashed or was killed for memory. Start over
             // with a fresh WebView instead of taking the whole app down.
+            if (detail.didCrash()) {
+                // A real crash (not the system reclaiming memory): keep a note
+                // so the next screen can show it. The page address stays on the phone.
+                try {
+                    CrashLog.write(
+                        applicationContext,
+                        "WebView renderer crashed while showing:\n${currentMainUrl ?: "(unknown page)"}\n\n" +
+                            "The app restarted the page. The renderer's own stack trace is only in logcat.",
+                    )
+                } catch (ignored: Exception) {
+                    // Logging is best effort.
+                }
+            }
+            if (view === webView) webViewDestroyed = true
             root.removeView(view)
             view.destroy()
             recreate()
@@ -401,6 +481,13 @@ class MainActivity : Activity() {
             // here; everything else goes to the matching app.
             val popup = WebView(this@MainActivity)
             popup.webViewClient = object : WebViewClient() {
+                // Every WebView in the app must handle this, or a renderer crash
+                // while the popup exists takes the whole app down.
+                override fun onRenderProcessGone(popupView: WebView, detail: RenderProcessGoneDetail): Boolean {
+                    popupView.destroy()
+                    return true
+                }
+
                 override fun shouldOverrideUrlLoading(popupView: WebView, request: WebResourceRequest): Boolean {
                     val url = request.url
                     if (ServerConfig.isSameOrigin(url, server) || ServerConfig.isSibling(url, server)) {
@@ -455,6 +542,8 @@ class MainActivity : Activity() {
         const val EXTRA_PATH = "path"
         private const val BRIDGE_NAME = "HyperionAndroid"
         private const val REQUEST_FILES = 1
+        /** Bridge messages longer than this are parsed off the UI thread. */
+        private const val SMALL_MESSAGE_CHARS = 64 * 1024
 
         /**
          * WebView's own FileChooserParams.createIntent() only uses the first

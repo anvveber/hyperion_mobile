@@ -26,6 +26,10 @@
     <string name="download_started">Downloading %1$s</string>
     <string name="download_saved">Saved to Downloads: %1$s</string>
     <string name="download_failed">Download failed</string>
+    <string name="download_too_large">File too large to save in the app (limit 18 MB). Use the browser for this export.</string>
+    <string name="crash_title">The app crashed last time</string>
+    <string name="crash_copy">Copy report</string>
+    <string name="crash_copied">Crash report copied</string>
     <string name="no_app_for_link">No app on this phone can open that link.</string>
     <string name="no_file_picker">No app on this phone can pick files.</string>
 
